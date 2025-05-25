@@ -1,18 +1,14 @@
 /target
+/build
 /local
 
 # Eclipse, Netbeans and IntelliJ files
 /.*
-!/.github
-!/.ci
 !.gitignore
-!.gitattributes
-!/.mvn
+!.dockerignore
+!.mvn
+!.s2i
 /nbproject
 /*.ipr
 /*.iws
 /*.iml
-.project
-
-# Repository wide ignore mac DS_Store files
-.DS_Store

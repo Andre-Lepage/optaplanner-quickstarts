@@ -1,134 +1,165 @@
-= OptaPlanner Quickstarts
+= Employee Scheduling (Java, Quarkus, Maven)
 
-== Overview of all Quickstarts
+Schedule shifts to employees, accounting for employee availability and shift skill requirements.
 
-|===
-|Use case quickstarts |Technology quickstarts
+image::../../build/quickstarts-showcase/src/main/resources/META-INF/resources/screenshot/quarkus-employee-scheduling-screenshot.png[]
 
-a|* <<school-timetabling, School timetabling>>
-* <<facility-location, Facility location problem>>
-* <<maintenance-scheduling, Maintenance scheduling>>
-* <<call-center, Call center>>
-* <<vaccination-scheduling, Vaccination scheduling>>
-* <<order-picking, Order Picking>>
-* <<employee-scheduling, Employee Scheduling>>
-* <<vehicle-routing, Vehicle Routing>>
+* <<run,Run the application>>
+* <<package,Run the packaged application>>
+* <<cloud,Host it in the cloud>>
+* <<native,Run it native>>
 
-a|* link:use-cases/school-timetabling/README.adoc[Quarkus] (Java, Maven or Gradle, Quarkus, H2)
-* link:technology/java-spring-boot/README.adoc[Spring Boot] (Java, Maven or Gradle, Spring Boot, H2)
-* link:technology/java-activemq-quarkus/README.adoc[ActiveMQ] (Java, ActiveMQ, Maven, Quarkus)
-* link:technology/kotlin-quarkus/README.adoc[Kotlin] (Kotlin, Maven, Quarkus, H2)
-* link:technology/python/README.adoc[Python (experimental)] (Python, Pip)
+[[run]]
+== Run the application
 
-2+a|* <<optaplanner-examples, OptaPlanner examples (desktop)>>
-|===
-
-== Get started
-
-Run the https://www.optaplanner.org/[OptaPlanner] quickstarts now:
-
-. https://adoptopenjdk.net[Install JDK 11 or later] with `JAVA_HOME` configured appropriately.
-
-. Clone this repository to build and run the quickstarts showcase:
+. Git clone the optaplanner-quickstarts repo and navigate to this directory:
 +
 [source, shell]
 ----
 $ git clone https://github.com/kiegroup/optaplanner-quickstarts.git
-$ cd optaplanner-quickstarts
-$ ./runQuickstartsFromSource.sh
+...
+$ cd optaplanner-quickstarts/use-cases/employee-scheduling
 ----
 
-== Use cases
+. Start the application with Maven:
++
+[source, shell]
+----
+$ mvn quarkus:dev
+----
 
-[[school-timetabling]]
-=== School timetabling
+. Visit http://localhost:8080 in your browser.
 
-Assign lessons to timeslots and rooms to produce a better schedule for teachers and students.
+. Click on the *Solve* button.
 
-image::build/quickstarts-showcase/src/main/resources/META-INF/resources/screenshot/quarkus-school-timetabling-screenshot.png[]
+Then try _live coding_:
 
-* link:use-cases/school-timetabling/README.adoc[Run quarkus-school-timetabling] (Java, Maven or Gradle, Quarkus, H2)
-* link:technology/java-spring-boot/README.adoc[Run spring-boot-school-timetabling] (Java, Maven or Gradle, Spring Boot, H2)
-* link:technology/java-activemq-quarkus/README.adoc[Run activemq-quarkus-school-timetabling] (Java, ActiveMQ, Maven, Quarkus)
-* link:technology/kotlin-quarkus/README.adoc[Run kotlin-quarkus-school-timetabling] (Kotlin, Maven, Quarkus, H2)
-* link:use-cases/vehicle-routing/README.adoc[Run quarkus-vehicle-routing] (Java, Maven or Gradle, Quarkus)
+. Make some changes in the source code.
+. Refresh your browser (F5).
 
-Without a UI:
+Notice that those changes are immediately in effect.
 
-* link:hello-world/README.adoc[Run hello-world-school-timetabling] (Java, Maven or Gradle)
 
-[[facility-location]]
-=== Facility location problem
+[[package]]
+== Run the packaged application
 
-Pick the best geographical locations for new stores, distribution centers, covid test centers or telco masts.
+When you're done iterating in `quarkus:dev` mode,
+package the application to run as a conventional jar file.
 
-image::build/quickstarts-showcase/src/main/resources/META-INF/resources/screenshot/quarkus-facility-location-screenshot.png[]
+. Compile it with Maven:
++
+[source, shell]
+----
+$ mvn package
+----
 
-* link:use-cases/facility-location/README.adoc[Run quarkus-facility-location] (Java, Maven, Quarkus)
+. Run it:
++
+[source, shell]
+----
+$ java -jar ./target/quarkus-app/quarkus-run.jar
+----
++
+[NOTE]
+====
+To run it on port 8081 instead, add `-Dquarkus.http.port=8081`.
+====
 
-[[maintenance-scheduling]]
-=== Maintenance scheduling
+. Visit http://localhost:8080 in your browser.
 
-Schedule maintenance jobs to crews over time to reduce both premature and overdue maintenance.
+. Click on the *Solve* button.
 
-image::build/quickstarts-showcase/src/main/resources/META-INF/resources/screenshot/quarkus-maintenance-scheduling-screenshot.png[]
 
-* link:use-cases/maintenance-scheduling/README.adoc[Run quarkus-maintenance-scheduling] (Java, Maven, Quarkus)
+[[cloud]]
+== Host it in the cloud
 
-[[call-center]]
-=== Call center
+To allow others to try this application in their browser,
+host it in the cloud and share the url with them.
 
-Schedule incoming calls to employees matching skills and availability.
+=== Host it on OpenShift (Kubernetes)
 
-image::build/quickstarts-showcase/src/main/resources/META-INF/resources/screenshot/quarkus-call-center-screenshot.png[]
+https://www.redhat.com/en/technologies/cloud-computing/openshift[Red Hat OpenShift] is an open source Kubernetes cloud service
+which is ideal to host OptaPlanner applications.
 
-* link:use-cases/call-center/README.adoc[Run quarkus-call-center] (Java, Maven, Quarkus)
+To deploy the application on OpenShift:
 
-[[vaccination-scheduling]]
-=== Vaccination scheduling
+. https://developers.redhat.com/developer-sandbox[Get a free Developer Sandbox account for OpenShift] and _launch_ the Developer Sandbox.
+. In the OpenShift web console, verify that the top left combobox is set to _Developer_ (not _Administrator_).
+. In the menu, select *Add* to create an application.
+. Under *Git Repository*, click *Import from Git* and fill in these parameters:
+.. Set *Git Repo URL* to `https://github.com/kiegroup/optaplanner-quickstarts`
+.. Under _Show advanced Git options_, set *Context dir* to `/use-cases/employee-scheduling`
+.. Press the *Create* button.
+. In the _Topology_ view, there is a new deployment:
+.. Wait a minute until the build completes (watch the bottom left icon until it turns green).
+.. Open the URL (click on the top right icon).
+. Click on the *Solve* button.
 
-Assign people to vaccination injection appointments over time at vaccination centers to end a pandemic sooner.
+=== Host it on OpenShift using native build
 
-image::build/quickstarts-showcase/src/main/resources/META-INF/resources/screenshot/quarkus-vaccination-scheduling-screenshot.png[]
+Requirements:
 
-* link:use-cases/vaccination-scheduling/README.adoc[Run quarkus-vaccination-scheduling] (Java, Maven, Quarkus)
+- Install https://podman.io/[Podman] or https://www.docker.com/[Docker]
+- Install https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html[OpenShift Client (oc) tools]
 
-[[order-picking]]
-=== Order Picking
+To deploy the application on OpenShift using the native build:
 
-Generate an optimal picking plan for completing a set of orders.
+. https://developers.redhat.com/developer-sandbox[Get a free Developer Sandbox account for OpenShift] and _launch_ the Developer Sandbox.
+. In the OpenShift web console, verify that the top left combobox is set to _Developer_ (not _Administrator_).
+. In the OpenShift web console, click your username (in the upper right corner) and select the "Copy login command" option.
+. In a bash terminal on your local machine, paste the login command.
+. In a local clone of the repo, navigate to the `use-cases/employee-scheduling` directory.
+. Run the command below:
++
+[source, shell]
+----
+$ mvn clean package -DskipTests -Dopenshift-native -Dquarkus.kubernetes.deploy=true -Dquarkus.native.container-build=true
+----
++
+. When the command is finished, you should see two pods in the Topology view: one for the _ephemeral_ Postgres database (data will not be saved), and one for the _native_ Quarkus application. If you click the Quarkus' application link (small bubble with link icon at the top right of the Quarkus' application bubble), you will be navigated to the application. Alternatively, you can get the route from bash with the following command:
++
+[source, shell]
+----
+$ oc get routes
+----
 
-image::build/quickstarts-showcase/src/main/resources/META-INF/resources/screenshot/quarkus-order-picking-screenshot.png[]
 
-* link:use-cases/order-picking/README.adoc[Run quarkus-order-picking] (Java, Maven, Quarkus)
+[[native]]
+== Run it native
 
-[[employee-scheduling]]
-=== Employee Scheduling
+To increase startup performance for serverless deployments,
+build the application as a native executable:
 
-Schedule shifts to employees, accounting for employee availability and shift skill requirements.
+. https://quarkus.io/guides/building-native-image#configuring-graalvm[Install GraalVM and gu install the native-image tool]
 
-image::build/quickstarts-showcase/src/main/resources/META-INF/resources/screenshot/quarkus-employee-scheduling-screenshot.png[]
+. Compile it natively. This takes a few minutes:
++
+[source, shell]
+----
+$ mvn package -Dnative -DskipTests
+----
 
-* link:use-cases/employee-scheduling/README.adoc[Run quarkus-employee-scheduling] (Java, Maven, Quarkus)
+. Run a database. By default, `application.properties` is configured for H2:
+.. Download the http://www.h2database.com/html/download.html[H2 database] (Platform-independent zip) and unzip it.
+.. Start the H2 server with the option `-ifNotExists` (not recommended in production):
++
+[source, shell]
+----
+$ cd h2/bin
+$ java -cp h2*.jar org.h2.tools.Server -ifNotExists
+----
 
-[[vehicle-routing]]
-=== Vehicle Routing
+. Run the native executable:
++
+[source, shell]
+----
+$ ./target/*-runner
+----
 
-Find the most efficient routes for a fleet of vehicles.
+. Visit http://localhost:8080 in your browser.
 
-image::build/quickstarts-showcase/src/main/resources/META-INF/resources/screenshot/quarkus-vehicle-routing-screenshot.png[]
-
-* link:use-cases/vehicle-routing/README.adoc[Run quarkus-vehicle-routing] (Java, Maven, Quarkus)
-
-[[optaplanner-examples]]
-=== OptaPlanner examples (desktop)
-
-Many examples in desktop technology.
-
-image::build/quickstarts-showcase/src/main/resources/META-INF/resources/screenshot/optaplanner-examples-screenshot.png[]
-
-* https://www.optaplanner.org/download/download.html[Download]
+. Click on the *Solve* button.
 
 == More information
 
-Learn more on https://www.optaplanner.org/[www.optaplanner.org].
+Visit https://www.optaplanner.org/[www.optaplanner.org].
