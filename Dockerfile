@@ -14,14 +14,17 @@ RUN microdnf install curl ca-certificates tar gzip ${JAVA_PACKAGE} \
     && microdnf clean all \
     && curl -L https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz | tar xz \
     && mv apache-maven-${MAVEN_VERSION} /opt/maven \
-    && ln -s /opt/maven/bin/mvn /usr/local/bin/mvn
+    && ln -s /opt/maven/bin/mvn /usr/local/bin/mvn \
+    && echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk" >> /etc/profile.d/java.sh \
+    && echo "export PATH=$JAVA_HOME/bin:$PATH" >> /etc/profile.d/java.sh \
+    && chmod +x /etc/profile.d/java.sh
 
 # Copy the Maven project
 COPY . /build/
 WORKDIR /build
 
 # Build the application
-RUN mvn clean package -DskipTests
+RUN . /etc/profile.d/java.sh && mvn clean package -DskipTests
 
 # Run stage
 FROM registry.access.redhat.com/ubi8/ubi-minimal
