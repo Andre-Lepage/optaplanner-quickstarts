@@ -17,14 +17,16 @@ RUN microdnf install curl ca-certificates tar gzip ${JAVA_PACKAGE} \
     && echo "export JAVA_HOME=$JAVA_HOME" >> /etc/profile.d/java.sh \
     && echo "export PATH=$JAVA_HOME/bin:$PATH" >> /etc/profile.d/java.sh \
     && chmod +x /etc/profile.d/java.sh \
-    && echo "JAVA_HOME set to: $JAVA_HOME"
+    && echo "JAVA_HOME set to: $JAVA_HOME" \
+    && java -version \
+    && echo $JAVA_HOME
 
 # Copy the Maven project
 COPY . /build/
 WORKDIR /build
 
 # Build the application
-RUN . /etc/profile.d/java.sh && java -version && mvn clean package -DskipTests
+RUN . /etc/profile.d/java.sh && java -version && echo $JAVA_HOME && mvn clean package -DskipTests
 
 # Run stage
 FROM registry.access.redhat.com/ubi8/ubi-minimal
@@ -42,6 +44,8 @@ RUN microdnf install curl ca-certificates ${JAVA_PACKAGE} \
     && echo "export JAVA_HOME=$JAVA_HOME" >> /etc/profile.d/java.sh \
     && echo "export PATH=$JAVA_HOME/bin:$PATH" >> /etc/profile.d/java.sh \
     && chmod +x /etc/profile.d/java.sh \
+    && echo "JAVA_HOME set to: $JAVA_HOME" \
+    && java -version \
     && mkdir /deployments \
     && chown 1001 /deployments \
     && chmod "g+rwX" /deployments \
