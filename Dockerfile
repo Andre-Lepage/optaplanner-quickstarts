@@ -7,7 +7,7 @@ ARG MAVEN_VERSION=3.8.8
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'
 
 # Install java and maven
-RUN microdnf install curl ca-certificates ${JAVA_PACKAGE} \
+RUN microdnf install curl ca-certificates tar ${JAVA_PACKAGE} \
     && microdnf update \
     && microdnf clean all \
     && curl -L https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz | tar xz \
