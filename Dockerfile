@@ -5,6 +5,8 @@ ARG JAVA_PACKAGE=java-11-openjdk-headless
 ARG MAVEN_VERSION=3.8.8
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+ENV PATH=$JAVA_HOME/bin:$PATH
 
 # Install java and maven
 RUN microdnf install curl ca-certificates tar gzip ${JAVA_PACKAGE} \
@@ -28,6 +30,8 @@ ARG JAVA_PACKAGE=java-11-openjdk-headless
 ARG RUN_JAVA_VERSION=1.3.8
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en'
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+ENV PATH=$JAVA_HOME/bin:$PATH
 
 # Install java and the run-java script
 RUN microdnf install curl ca-certificates ${JAVA_PACKAGE} \
