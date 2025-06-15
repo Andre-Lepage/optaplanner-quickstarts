@@ -1,3 +1,10 @@
 *
 !target/*-runner
 !target/quarkus-app/*
+
+target/
+.git/
+.gitignore
+README.adoc
+.s2i/
+build/
