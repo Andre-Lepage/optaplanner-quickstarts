@@ -1,0 +1,14 @@
+C:\Users\andre\hyungjwa\optaplanner-quickstarts\src\main\java\org\acme\employeescheduling\domain\Employee.java
+C:\Users\andre\hyungjwa\optaplanner-quickstarts\src\main\java\org\acme\employeescheduling\domain\EmployeeSchedule.java
+C:\Users\andre\hyungjwa\optaplanner-quickstarts\src\main\java\org\acme\employeescheduling\domain\Availability.java
+C:\Users\andre\hyungjwa\optaplanner-quickstarts\src\main\java\org\acme\employeescheduling\domain\ShiftPinningFilter.java
+C:\Users\andre\hyungjwa\optaplanner-quickstarts\src\main\java\org\acme\employeescheduling\persistence\ScheduleStateRepository.java
+C:\Users\andre\hyungjwa\optaplanner-quickstarts\src\main\java\org\acme\employeescheduling\persistence\AvailabilityRepository.java
+C:\Users\andre\hyungjwa\optaplanner-quickstarts\src\main\java\org\acme\employeescheduling\persistence\EmployeeRepository.java
+C:\Users\andre\hyungjwa\optaplanner-quickstarts\src\main\java\org\acme\employeescheduling\solver\EmployeeSchedulingConstraintProvider.java
+C:\Users\andre\hyungjwa\optaplanner-quickstarts\src\main\java\org\acme\employeescheduling\domain\ScheduleState.java
+C:\Users\andre\hyungjwa\optaplanner-quickstarts\src\main\java\org\acme\employeescheduling\bootstrap\DemoDataGenerator.java
+C:\Users\andre\hyungjwa\optaplanner-quickstarts\src\main\java\org\acme\employeescheduling\persistence\ShiftRepository.java
+C:\Users\andre\hyungjwa\optaplanner-quickstarts\src\main\java\org\acme\employeescheduling\rest\EmployeeScheduleResource.java
+C:\Users\andre\hyungjwa\optaplanner-quickstarts\src\main\java\org\acme\employeescheduling\domain\AvailabilityType.java
+C:\Users\andre\hyungjwa\optaplanner-quickstarts\src\main\java\org\acme\employeescheduling\domain\Shift.java

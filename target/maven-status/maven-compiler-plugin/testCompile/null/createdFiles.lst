@@ -1,0 +1,4 @@
+org\acme\employeescheduling\rest\EmployeeScheduleResourceTest.class
+org\acme\employeescheduling\TestResources.class
+org\acme\employeescheduling\solver\EmployeeSchedulingConstraintProviderTest.class
+META-INF\panache-archive.marker
