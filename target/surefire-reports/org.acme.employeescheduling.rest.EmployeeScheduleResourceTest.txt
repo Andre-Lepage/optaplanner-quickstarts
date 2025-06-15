@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.acme.employeescheduling.rest.EmployeeScheduleResourceTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 89.976 s - in org.acme.employeescheduling.rest.EmployeeScheduleResourceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 88.272 s - in org.acme.employeescheduling.rest.EmployeeScheduleResourceTest
